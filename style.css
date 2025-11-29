@@ -1,0 +1,26 @@
+/* Cambia la barra lateral (Sidebar) de horizontal a vertical. Usualmente, los íconos de Explorer, Source Control, etc.
+   están en la barra de actividades de VSCode, que se muestra con la clase .activitybar.
+   Para ponerlos de forma vertical, forzamos que el contenedor utilice dirección de columna (vertical). */
+
+.activitybar {
+  flex-direction: column !important;
+  display: flex !important;
+}
+
+/* Por si el diseño se basa en listas, los siguientes selectores ayudan a asegurar la disposición vertical: */
+.activitybar > .content, /* algunas versiones usan este contenedor interno */
+.activitybar .composite-bar, 
+.activitybar .monaco-action-bar.vertical {
+  flex-direction: column !important;
+  display: flex !important;
+}
+
+/* Asegura que los iconos ocupen todo el ancho (queden uno debajo del otro) */
+.activitybar .action-item {
+  width: 100%;
+}
+
+.logo_uptp {
+  width: 100px;
+  height: 100px;
+}

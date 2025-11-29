@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Proyecto socio tecnológico</title>
+    <style>
+      /* Safe area para los costados */
+      .safe-area {
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      /* Scroll suave para anclas */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+</head>
+<body>
+    <div class="safe-area">
+
+        <nav class="flex items-center justify-between px-6 py-4 bg-blue-900 shadow-lg">
+            <img src="assets/logo_uptp.png" alt="logo_uptp" class="w-14 h-14 rounded-full shadow-md">
+            <ul class="flex gap-6">
+                <li>
+                    <a href="#" class="text-white font-semibold hover:text-blue-300 transition">Inicio</a>
+                </li>
+                <li>
+                    <a href="assets/diapositivasproyecto (1).pptx" download class="text-white font-semibold hover:text-blue-300 transition">Diapositivas</a>
+                </li>
+                <li>
+                    <a href="assets/proyecto221125.docx" class="text-white font-semibold hover:text-blue-300 transition">Informe de proyecto</a>
+                </li>
+                <li>
+                    <!-- Cambio: el href es #footer, que apunta al id del footer, y no se necesita JS extra -->
+                    <a href="#footer" class="text-white font-semibold hover:text-blue-300 transition">Integrantes</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <hr class="my-0 border-t-4 border-blue-300 shadow-sm rounded-full" style="height: 10px;">
+        
+        <header class="header bg-blue-800 text-white text-left py-6 shadow-lg rounded-b-3xl mb-2">
+            <h1 class="text-2xl md:text-3xl font-bold mb-2 tracking-wide">
+                U.P.T.P. "Juan de Jesús Montilla"
+            </h1>
+            <h1 class="text-xl md:text-2xl font-semibold tracking-wider">
+                Proyecto socio-tecnológico I
+            </h1>
+        </header>
+        
+        <main class="flex flex-col items-center justify-center min-h-[400px] mb-2 md:mb-4"> <!-- Reduce space below main -->
+            <div class="flex flex-col md:flex-row items-center justify-start gap-10 w-full max-w-4xl mt-4">
+                <!-- Carrusel dinámico, ligeramente desplazado a la izquierda y con menor altura -->
+                <div class="flex flex-1 justify-start md:ml-4 items-start">
+                    <div id="carousel" class="relative w-[600px] h-[360px] rounded-3xl overflow-hidden shadow-2xl bg-gray-200">
+                        <img
+                            id="carousel-image"
+                            src="assets/foto_integrantes.jpg"
+                            alt="Carrusel"
+                            class="object-cover w-full h-full transition-opacity duration-700"
+                        >
+                    </div>
+                </div>
+
+                <!-- Botones de descarga con animación de icono de descarga al hacer hover -->
+                <style>
+                    .download-btn .download-icon {
+                        /* transicion mas lenta (suave), ease-in-out */
+                        transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+                        margin-right: 0.75rem; /* Para separar el icono del texto */
+                    }
+                    .download-btn:hover .download-icon {
+                        transform: translateY(6px) scale(1.2);
+                    }
+                </style>
+                <div class="flex flex-col gap-6 ml-0 md:ml-10 mt-8 md:mt-0">
+                    <a href="assets/proyecto221125.docx" download class="download-btn flex items-center justify-center w-full md:w-[340px] px-10 py-4 bg-blue-700 text-white rounded-xl font-semibold shadow-md hover:bg-blue-800 transition text-lg group">
+                        <svg class="download-icon w-7 h-7 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path d="M12 16a1 1 0 0 1-.707-.293l-4-4a1 1 0 0 1 1.414-1.414L11 12.586V4a1 1 0 0 1 2 0v8.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4A1 1 0 0 1 12 16zm-7 4a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H5z"/>
+                        </svg>
+                        Descargar informe del proyecto
+                    </a>
+                    <a href="assets/diapositivasproyecto (1).pptx" download class="download-btn flex items-center justify-center w-full md:w-[340px] px-10 py-4 bg-green-600 text-white rounded-xl font-semibold shadow-md hover:bg-green-700 transition text-lg group">
+                        <svg class="download-icon w-7 h-7 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path d="M12 16a1 1 0 0 1-.707-.293l-4-4a1 1 0 0 1 1.414-1.414L11 12.586V4a1 1 0 0 1 2 0v8.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4A1 1 0 0 1 12 16zm-7 4a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H5z"/>
+                        </svg>
+                        Descargar diapositivas del proyecto
+                    </a>
+                </div>
+            </div>
+            <script>
+                // Imágenes para el carrusel
+                const images = [
+                    'assets/foto_integrantes.jpg',
+                    'assets/foto hidrosportuguesa.jpg',
+                    'assets/image.png'
+                ];
+                let index = 0;
+                const carouselImage = document.getElementById('carousel-image');
+
+                function showImage(newIndex) {
+                    index = (newIndex + images.length) % images.length;
+                    carouselImage.style.opacity = 0;
+                    setTimeout(() => {
+                        carouselImage.src = images[index];
+                        carouselImage.style.opacity = 1;
+                    }, 250);
+                }
+
+                // Carrusel solo automático, sin controles manuales
+                setInterval(() => showImage(index + 1), 4000);
+            </script>
+        </main>
+        <!-- Se agrega el id="footer" al footer para anclaje -->
+        <footer id="footer" class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white text-center py-7 mt-8 shadow-inner rounded-t-3xl relative overflow-hidden">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Logo or Icon Left -->
+                <div class="mb-4 md:mb-0 flex flex-col items-center md:items-start">
+                    <img src="assets/logo_uptp.png" alt="Logo UPTP" class="logo_uptp mb-2 rounded-full shadow-lg border-2 border-blue-400 bg-white" style="width:72px;height:72px;" loading="lazy"/>
+                    <span class="text-xs text-blue-200 opacity-80">U.P.T.P.<br>"Juan de Jesus Montilla"</span>
+                </div>
+                <!-- Main Text Center -->
+                <div class="flex-1">
+                    <p class="text-xl md:text-2xl font-bold mb-1 tracking-tight drop-shadow">2025 Proyecto Socio Tecnológico</p>
+                    <p class="text-sm text-blue-100 italic opacity-60 mb-4">Seccion 236</p>
+                </div>
+                <!-- Integrantes Right -->
+                <div class="flex flex-col items-center md:items-end">
+                    <p class="font-semibold text-lg text-blue-200 mb-1 underline decoration-blue-300">Integrantes</p>
+                    <ul class="flex flex-col items-center md:items-end space-y-1 text-[16px] text-white/90">
+                        <li>David Adreani</li>
+                        <li>Jose Moreno</li>
+                        <li>Wilfredo Bracho</li>
+                        <li>Juan Prada</li>
+                        <li>Jose Idalgo</li>
+                        <li>Migelalngel Linares</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
